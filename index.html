@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Special Proposal ❤️</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#ffe6f0;
+overflow:hidden;
+padding-top:30px;
+}
+
+h1{font-size:28px;}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yesBtn{background:#ff4d88;color:white;}
+#noBtn{background:#555;color:white;position:relative;}
+
+#giftBox{display:none;margin-top:20px;font-size:22px;}
+
+#slideshow{
+width:260px;height:260px;margin:auto;
+border-radius:15px;overflow:hidden;
+box-shadow:0px 0px 10px gray;
+}
+
+#slideshow img{
+width:100%;height:100%;object-fit:cover;
+}
+
+.heart{
+position:fixed;
+color:red;
+font-size:20px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<h1>❤️ Kya tum meri special banogi? ❤️</h1>
+
+<div id="slideshow">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<br>
+
+<button id="yesBtn">YES 💖</button>
+<button id="noBtn">NO 😢</button>
+
+<div id="giftBox">
+🎁 Teddy Bear <br>
+🌹 Red Roses <br>
+🍫 Chocolate Box <br><br>
+<h2>😍 Yayyyy Tumne YES bol diya!</h2>
+</div>
+
+<script>
+
+// slideshow
+let images=["photo1.jpg","photo2.jpg","photo3.jpg"];
+let index=0;
+setInterval(function(){
+index++;
+if(index>=images.length){index=0;}
+document.getElementById("slide").src=images[index];
+},2000);
+
+// heart rain
+setInterval(function(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(10+Math.random()*30)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},300);
+
+// proposal logic
+let noCount=0;
+let noLines=[
+"Soch lo 😭",
+"Itni jaldi mana?",
+"Ek baar aur socho 😢",
+"Dil toot jayega 💔",
+"Last chance 😭"
+];
+
+document.getElementById("noBtn").onclick=function(){
+alert(noLines[noCount % noLines.length]);
+noCount++;
+
+let yesBtn=document.getElementById("yesBtn");
+yesBtn.style.fontSize=(18+noCount*5)+"px";
+yesBtn.style.padding=(12+noCount*3)+"px "+(25+noCount*5)+"px";
+
+// no button move
+this.style.position="absolute";
+this.style.left=Math.random()*80+"%";
+this.style.top=Math.random()*80+"%";
+}
+
+document.getElementById("yesBtn").onclick=function(){
+document.getElementById("giftBox").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
